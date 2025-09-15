@@ -1,54 +1,94 @@
-import React from 'react';
-import portfolioData from '../data/data.json';
+import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { getContentByUrl } from "../js/api";
+import NotFound from "./not-found";
 
-// Detail Page Component
-export default class DetailItemContent extends React.Component {
-    render() {
-        const path = this.props.location.pathname;
-        const category = path.split('/')[1];
-        const objectNum = portfolioData[category].findIndex(item => item.url === path);
-        const detailItem = portfolioData[category][objectNum];
-        const subContent = detailItem.subContent;
-        let subContentTitle;
-        let subContentLink;
-        let subContentDesc;
-        let subContentVideo;
+export default function DetailItem() {
+    const location = useLocation();
+    const url = location.pathname; // e.g., "/dev/jj"
 
-        if (subContent.link) {
-            subContentTitle = <h2><a href={subContent.link} target="_blank" rel="noopener noreferrer">{detailItem.name}</a></h2>;
-            subContentLink = <a class="detail-link" href={subContent.link} target="_blank" rel="noopener noreferrer">Visit The Site: {subContent.link}</a>;
-        } else {
-            subContentTitle = <h2>{detailItem.name}</h2>;
-        }
+    const [detailItem, setDetailItem] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [notFound, setNotFound] = useState(false);
 
-        if (subContent.desc) {
-            subContentDesc = <p dangerouslySetInnerHTML={{__html: subContent.desc}}></p>;
-        }
+    useEffect(() => {
+        (async () => {
+            setLoading(true);
+            setError(null);
+            setNotFound(false);
 
-        if (subContent.videoLink) {
-            subContentVideo = <video preload="true" controls>      
-                 <source src={`/video/${subContent.videoLink}.webm`} type='video/webm; codecs="vp8, vorbis"' /> 
-                 <source src={`/video/${subContent.videoLink}.mp4`} type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-                 This web browser does not support HTML5.    
-            </video>;
-        }
+            try {
+                const data = await getContentByUrl(url);
 
+                if (!data) {
+                    setNotFound(true);
+                } else {
+                    setDetailItem(data);
+                }
+            } catch (err) {
+                setError(err.message || "An error occurred");
+            } finally {
+                setLoading(false);
+            }
+        })();
+    }, [url]);
+
+    if (loading) {
         return (
-            <div id="sub-content">
+            <div id="content">
                 <div className="grid-d-12">
-                    {subContentTitle}
-                    {subContentDesc}
-                    {subContentLink} 
-                    {subContentVideo}
-
-                    <div class="images">
-                        {subContent.images.map(image => (
-                            <img key={image} src={image} alt="" />
-                        ))}
-                    </div>               
+                    <div className="loading">Loading content...</div>
                 </div>
             </div>
         );
     }
-}
 
+    if (error) {
+        return (
+            <div id="content">
+                <div className="grid-d-12">
+                    <div className="error">Error: {error}</div>
+                </div>
+            </div>
+        );
+    }
+
+    if (notFound) {
+        return <NotFound />;
+    }
+
+    const videoSrc = detailItem.videoUrl;
+
+    return (
+        <div id="sub-content">
+            <div className="grid-d-12">
+                {/* Title */}
+                <h2>{detailItem.name}</h2>
+
+                {/* Description */}
+                {detailItem.description && (
+                    <p dangerouslySetInnerHTML={{ __html: detailItem.description }} />
+                )}
+
+                {/* Video */}
+                {videoSrc && (
+                    <video preload="true" controls>
+                        <source src={`/video/${videoSrc}.webm`} type='video/webm; codecs="vp8, vorbis"' />
+                        <source src={`/video/${videoSrc}.mp4`} type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+                        This web browser does not support HTML5 video.
+                    </video>
+                )}
+
+                {/* Image gallery */}
+                {detailItem.images && (
+                    <div className="images">
+                        {detailItem.images.map((img, idx) => (
+                            <img key={idx} src={img} alt="" />
+                        ))}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
