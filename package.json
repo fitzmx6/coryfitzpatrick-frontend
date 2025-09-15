@@ -1,0 +1,37 @@
+{
+  "name": "react-portfolio",
+  "version": "1.1.0",
+  "private": true,
+  "scripts": {
+    "start": "serve -s build",
+    "start-dev": "serve -s build && watch-css",
+    "build": "npm run build-css && react-scripts build",
+    "build-css": "sass src/styles/style.scss src/styles/style.css",
+    "dev": "react-scripts start",
+    "heroku-postbuild": "npm run build"
+  },
+  "dependencies": {
+    "ajv": "^8.17.1",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^5.3.4",
+    "react-scripts": "5.0.1",
+    "serve": "^14.2.4"
+  },
+  "devDependencies": {
+    "sass": "^1.92.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
