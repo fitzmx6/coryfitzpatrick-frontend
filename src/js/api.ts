@@ -1,8 +1,20 @@
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || '';
+const API_BASE_URL: string = import.meta.env.VITE_API_URL || '';
 
-export const getContentByCategory = async (category: string) => {
-    const response = await fetch(`${API_BASE_URL}/content/category?category=${category}`);
+export interface ContentItem {
+    id: number;
+    category: string;
+    name: string;
+    description?: string;
+    url: string;
+    videoUrl?: string;
+    thumbnailImage?: string;
+    images?: string[];
+}
 
+export const getContentByCategory = async (category: string): Promise<ContentItem[]> => {
+    const response = await fetch(`${API_BASE_URL}/content/category?category=${encodeURIComponent(category)}`);
+
+    console.log(API_BASE_URL);
     if (!response.ok) {
         throw new Error(`Failed to fetch content: ${response.status}`);
     }
@@ -10,7 +22,7 @@ export const getContentByCategory = async (category: string) => {
     return await response.json();
 };
 
-export async function getContentByUrl(url: string) {
+export const getContentByUrl = async (url: string): Promise<ContentItem | null> => {
     const response = await fetch(`${API_BASE_URL}/content/item?url=${encodeURIComponent(url)}`);
 
     if (response.status === 404) {
@@ -22,4 +34,4 @@ export async function getContentByUrl(url: string) {
     }
 
     return await response.json();
-}
+};

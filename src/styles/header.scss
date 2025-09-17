@@ -2,7 +2,7 @@ header {
   margin: 0 auto 20px auto;
   overflow: hidden;
   padding: 35px 0 18px 0;
-  color:#777;
+  color: #777;
 
   @media screen and (max-width: 460px) {
     padding-top: 0;
@@ -30,15 +30,15 @@ header {
 
   h1,
   h2 {
-    float:left;
+    float: left;
     font-size: 1.2em;
     color: #777;
     font-weight:normal;
-    font-family: Nexa,"Berthold Akzidenz Grotesk BE", Helvetica, verdana, "sans-serif";
+    font-family: Nexa,"Berthold Akzidenz Grotesk BE", Helvetica, verdana, sans-serif;
   }
 
   h1 {
-    margin-right:6px;
+    margin-right: 6px;
 
     @media screen and (max-width: 460px) {
       font-size: 1.1em;
@@ -79,7 +79,7 @@ header {
 nav {
   float:right;
   font-weight: normal;
-  font-family: Nexa,"Berthold Akzidenz Grotesk BE", Helvetica, verdana, "sans-serif";
+  font-family: Nexa,"Berthold Akzidenz Grotesk BE", Helvetica, verdana, sans-serif;
 
   @media screen and (max-width: 900px) {
     width: 100%;
@@ -133,7 +133,7 @@ nav {
   }
 
   .active {
-    font-family: Nexa,"Berthold Akzidenz Grotesk BE", Helvetica, verdana, "sans-serif";
+    font-family: Nexa,"Berthold Akzidenz Grotesk BE", Helvetica, verdana, sans-serif;
     color: #2c2a2a;
     font-weight: 500;
   }

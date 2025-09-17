@@ -3,40 +3,24 @@
   "version": "1.1.0",
   "private": true,
   "scripts": {
-    "start": "serve -s build",
-    "start-dev": "serve -s build && watch-css",
-    "build": "npm run build-css && react-scripts build",
-    "build-css": "sass src/styles/style.scss src/styles/style.css",
-    "dev": "react-scripts start",
-    "heroku-postbuild": "npm run build"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build-css": "sass src/styles/style.scss src/styles/style.css"
   },
   "dependencies": {
     "ajv": "^8.17.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.30.1",
-    "react-scripts": "^5.0.1"
+    "react-router-dom": "^5.3.4"
   },
   "devDependencies": {
-    "@types/jest": "^30.0.0",
-    "@types/node": "^24.5.1",
-    "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "@types/react-router-dom": "^5.3.3",
+    "@vitejs/plugin-react": "^4.2.1",
     "sass": "^1.92.0",
-    "typescript": "^5.9.2"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "typescript": "^5.0.0",
+    "vite": "^5.4.0"
   }
 }
