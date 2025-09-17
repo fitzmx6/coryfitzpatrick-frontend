@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import RouterWrapper from "./components/router";
 import "./styles/style.css";
 import "./styles/rwdgrid.min.css";
-import registerServiceWorker from "./registerServiceWorker";
+import { register } from "./serviceWorkerRegistration";
 
 const rootElement = document.getElementById("wrapper");
 
@@ -14,4 +14,4 @@ if (!rootElement) {
 const root = createRoot(rootElement);
 root.render(<RouterWrapper />);
 
-registerServiceWorker();
+register();
