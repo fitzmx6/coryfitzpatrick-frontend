@@ -1,5 +1,5 @@
 {
-  "name": "react-portfolio",
+  "name": "coryfitzpatrick-frontend",
   "version": "1.1.0",
   "private": true,
   "scripts": {
@@ -11,8 +11,8 @@
   "dependencies": {
     "ajv": "^8.17.1",
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
     "react-router-dom": "^5.3.4"
   },
   "devDependencies": {
