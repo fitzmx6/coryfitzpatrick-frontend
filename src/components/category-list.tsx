@@ -2,13 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { getContentByCategory } from '../js/api';
 
-const CategoryList = ({ navToggle }) => {
-    const [items, setItems] = useState([]);
+interface ContentItem {
+    id: number;
+    name: string;
+    url: string;
+    thumbnailImage: string;
+}
+
+interface CategoryListProps {
+    navToggle: () => void;
+}
+
+const CategoryList: React.FC<CategoryListProps> = ({ navToggle }) => {
+    const [items, setItems] = useState<ContentItem[]>([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<string | null>(null);
     const location = useLocation();
 
-    // Extract category from current path (e.g., "/dev" -> "dev")
     const category = location.pathname.substring(1);
 
     useEffect(() => {
@@ -21,7 +31,7 @@ const CategoryList = ({ navToggle }) => {
             try {
                 const data = await getContentByCategory(category);
                 setItems(data);
-            } catch (err) {
+            } catch (err: any) {
                 setError(err.message);
             } finally {
                 setLoading(false);
@@ -68,7 +78,7 @@ const CategoryList = ({ navToggle }) => {
                             <img
                                 src={item.thumbnailImage}
                                 alt={item.name}
-                                onError={(e) => { e.target.src = '/images/placeholder.jpg'; }}
+                                onError={(e) => { e.currentTarget.src = '/images/placeholder.jpg'; }}
                             />
                             <figcaption>
                                 <h2>{item.name}</h2>

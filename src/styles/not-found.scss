@@ -1,0 +1,48 @@
+.not-found-bg {
+  background: url(../../public/images/concrete-seamless.png) left top / 400px 400px repeat;
+
+  @media (max-width: 460px) {
+    background: #ccc;
+  }
+}
+
+#not-found {
+  max-width: 80%;
+  margin: 0 auto;
+
+  img {
+    width: 1000px;
+    max-width: 80%;
+    margin: 0 auto;
+    display: block;
+  }
+
+  h3,
+  h2 {
+    color: #777;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 80px;
+    margin-top: 10px;
+
+    @media (max-width: 767px) {
+      font-size: 60px;
+    }
+  }
+
+  h3 {
+    font-size: 20px;
+    margin-top: 60px;
+
+    @media (max-width: 767px) {
+      font-size: 16px;
+      margin-top: 20px;
+    }
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}

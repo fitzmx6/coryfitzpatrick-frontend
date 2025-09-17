@@ -3,17 +3,25 @@ import { useLocation } from "react-router-dom";
 import { getContentByUrl } from "../js/api";
 import NotFound from "./not-found";
 
+interface ContentItem {
+    id: number;
+    name: string;
+    description?: string;
+    videoUrl?: string;
+    images?: string[];
+}
+
 export default function DetailItem() {
     const location = useLocation();
-    const url = location.pathname; // e.g., "/dev/jj"
+    const url = location.pathname;
 
-    const [detailItem, setDetailItem] = useState(null);
+    const [detailItem, setDetailItem] = useState<ContentItem | null>(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<string | null>(null);
     const [notFound, setNotFound] = useState(false);
 
     useEffect(() => {
-        (async () => {
+        const fetchData = async () => {
             setLoading(true);
             setError(null);
             setNotFound(false);
@@ -26,12 +34,14 @@ export default function DetailItem() {
                 } else {
                     setDetailItem(data);
                 }
-            } catch (err) {
-                setError(err.message || "An error occurred");
+            } catch (err: any) {
+                setError(err?.message || "An error occurred");
             } finally {
                 setLoading(false);
             }
-        })();
+        };
+
+        void fetchData(); // <-- Fix: explicitly ignore the returned Promise
     }, [url]);
 
     if (loading) {
@@ -54,37 +64,31 @@ export default function DetailItem() {
         );
     }
 
-    if (notFound) {
+    if (notFound || !detailItem) {
         return <NotFound />;
     }
 
-    const videoSrc = detailItem.videoUrl;
+    const { name, description, videoUrl, images } = detailItem;
 
     return (
         <div id="sub-content">
             <div className="grid-d-12">
-                {/* Title */}
-                <h2>{detailItem.name}</h2>
+                <h2>{name}</h2>
 
-                {/* Description */}
-                {detailItem.description && (
-                    <p dangerouslySetInnerHTML={{ __html: detailItem.description }} />
-                )}
+                {description && <p dangerouslySetInnerHTML={{ __html: description }} />}
 
-                {/* Video */}
-                {videoSrc && (
+                {videoUrl && (
                     <video preload="true" controls>
-                        <source src={`/video/${videoSrc}.webm`} type='video/webm; codecs="vp8, vorbis"' />
-                        <source src={`/video/${videoSrc}.mp4`} type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+                        <source src={`/video/${videoUrl}.webm`} type='video/webm; codecs="vp8, vorbis"' />
+                        <source src={`/video/${videoUrl}.mp4`} type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
                         This web browser does not support HTML5 video.
                     </video>
                 )}
 
-                {/* Image gallery */}
-                {detailItem.images && (
+                {images && images.length > 0 && (
                     <div className="images">
-                        {detailItem.images.map((img, idx) => (
-                            <img key={idx} src={img} alt="" />
+                        {images.map((img, idx) => (
+                            <img key={idx} src={img} alt={name} />
                         ))}
                     </div>
                 )}

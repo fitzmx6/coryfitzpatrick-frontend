@@ -1,0 +1,38 @@
+footer {
+  padding: 20px 0;
+  font-family: Nexa,"Berthold Akzidenz Grotesk BE", Helvetica, verdana, "sans-serif";
+  font-size: 1.2em;
+
+  ul {
+    list-style-type: none;
+    max-width: 80%;
+  }
+
+  li {
+    float: left;
+    display: inline;
+    padding: 5px 10px 0 0;
+    color: #777;
+    font-size: 16px;
+  }
+
+  a{
+    color: #777;
+
+    &:hover {
+      color:#333;
+      -webkit-transition: all 0.5s;
+    }
+  }
+}
+
+#email {
+  width: 100%;
+  float: left;
+  clear: both;
+}
+
+#footer-name {
+  width: auto;
+  clear: left;
+}

@@ -1,0 +1,157 @@
+header {
+  margin: 0 auto 20px auto;
+  overflow: hidden;
+  padding: 35px 0 18px 0;
+  color:#777;
+
+  @media screen and (max-width: 460px) {
+    padding-top: 0;
+
+    .grid-d-12 {
+      padding-top: 0;
+      margin-top: 0;
+    }
+
+    &.open-nav nav {
+      margin-top: 20px;
+    }
+  }
+}
+
+#logo {
+  a {
+    float: left;
+
+    &:hover h1 {
+      color: #333;
+      -webkit-transition: all 0.5s;
+    }
+  }
+
+  h1,
+  h2 {
+    float:left;
+    font-size: 1.2em;
+    color: #777;
+    font-weight:normal;
+    font-family: Nexa,"Berthold Akzidenz Grotesk BE", Helvetica, verdana, "sans-serif";
+  }
+
+  h1 {
+    margin-right:6px;
+
+    @media screen and (max-width: 460px) {
+      font-size: 1.1em;
+      width: 160px;
+    }
+  }
+}
+
+.mobile-nav-link {
+  display: none;
+
+  @media screen and (max-width: 460px) {
+    display: block;
+    margin-left: auto;
+    padding-top: 4px;
+    width: 40px;
+    height: 24px;
+    border-top: 5px solid #777;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    background: none;
+    outline: none;
+
+    &::before,
+    &::after {
+      content: "";
+      display: block;
+      border-top: 5px solid #777;
+    }
+
+    &::before {
+      padding-bottom: 4px;
+    }
+  }
+}
+
+nav {
+  float:right;
+  font-weight: normal;
+  font-family: Nexa,"Berthold Akzidenz Grotesk BE", Helvetica, verdana, "sans-serif";
+
+  @media screen and (max-width: 900px) {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  @media screen and (max-width: 460px) {
+    margin-top: -100px;
+    transition: margin 700ms;
+  }
+
+  li {
+    display: inline;
+    font-size: 18px;
+    color:#777;
+    cursor: pointer;
+    border-right: 1px solid #929292;
+    padding-right: 22px;
+    margin-right: 18px;
+    transition: all 1s ease;
+
+    &:last-child {
+      border-right: none;
+      margin-right:0;
+      padding-right:0;
+    }
+
+    @media screen and (max-width: 460px) {
+      display: inline-block;
+      width: 48%;
+      margin: 0;
+      border-right: 0;
+      padding: 0;
+      border-bottom: 2px solid #999;
+      transition: none;
+      line-height: 1;
+
+      &:nth-child(odd) {
+        margin-right: 4%;
+      }
+
+      a {
+        display: block;
+        padding: 12px 0 10px 0;
+      }
+    }
+  }
+
+  a:hover {
+    color: #2c2a2a;
+  }
+
+  .active {
+    font-family: Nexa,"Berthold Akzidenz Grotesk BE", Helvetica, verdana, "sans-serif";
+    color: #2c2a2a;
+    font-weight: 500;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .top-header {
+    width: 100%;
+    padding-top: 40px;
+    display: flex;
+    align-items: center;
+    background-color: #ccc;
+    position: relative;
+    z-index: 2;
+  }
+
+  .open-nav .mobile-nav-link,
+  .open-nav .mobile-nav-link::after {
+    border-color: #ccc;
+  }
+}

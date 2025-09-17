@@ -1,8 +1,14 @@
-import React from 'react';
-import {NavLink} from "react-router-dom";
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
-export default class Header extends React.Component {
-    constructor(props) {
+interface HeaderState {
+    open: boolean;
+}
+
+interface HeaderProps {}
+
+export default class Header extends Component<HeaderProps, HeaderState> {
+    constructor(props: HeaderProps) {
         super(props);
         this.state = { open: false };
         this.mobileNavToggle = this.mobileNavToggle.bind(this);
@@ -19,7 +25,7 @@ export default class Header extends React.Component {
 
     render() {
         return (
-            <header className={this.state.open ? "open-nav" : ""}>
+            <header className={this.state.open ? 'open-nav' : ''}>
                 <div className="grid-d-12">
                     <div className="top-header">
                         <div id="logo">

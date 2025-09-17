@@ -1,162 +1,7 @@
-html, body, div, figure, figcaption, section, article, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-  background: transparent;
-  border: 0;
-  margin: 0;
-  padding: 0;
-  vertical-align: baseline;
-  text-decoration: none;
-}
-
-a:link,
-button {
-  text-decoration: none;
-  color: #777;
-  -webkit-transition: all 0.5s;
-}
-
-a:visited {
-  text-decoration: none;
-  color: #777;
-}
-
-a:hover {
-  text-decoration: none;
-  color: #2c2a2a;
-}
-
-a:active {
-  text-decoration: none;
-}
-
-div {
-  height: auto;
-  font-family: Nexa, "Berthold Akzidenz Grotesk BE", Helvetica, verdana, "sans-serif";
-}
-
-* {
-  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box; /* Firefox, other Gecko */
-  box-sizing: border-box; /* Opera/IE 8+ */
-}
-
-@font-face {
-  font-family: Nexa;
-  src: url(../fonts/NexaBold.woff);
-}
-body {
-  background: none repeat scroll 0 0 #ccc;
-}
-
-.grid-panel {
-  position: relative;
-}
-.grid-panel figure {
-  position: relative;
-  height: 320px;
-  transform: translateY(90px);
-  transition: transform 0.3s;
-}
-@media screen and (max-width: 1024px) {
-  .grid-panel figure {
-    bottom: 10px;
-    transform: none;
-  }
-}
-.grid-panel figure img {
-  height: auto;
-  display: block;
-  position: relative;
-  transition: transform 0.4s;
-  transform: translate(-50%, 0);
-  left: 50%;
-  bottom: 90px;
-}
-@media screen and (max-width: 1024px) {
-  .grid-panel figure img {
-    width: 600px;
-  }
-}
-.grid-panel figcaption {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  padding: 20px;
-  background: #1e1c1c;
-  color: #ed4e6e;
-  display: flex;
-  align-items: center;
-  height: 100px;
-  width: 101%;
-}
-.grid-panel figcaption h2 {
-  color: #fff;
-  max-width: 44%;
-}
-.grid-panel figcaption a {
-  text-align: center;
-  padding: 5px 10px;
-  border-radius: 2px;
-  display: inline-block;
-  background: #ed4e6e;
-  color: #fff;
-}
-.grid-panel > a {
-  display: block;
-  overflow: hidden;
-}
-.grid-panel > a:hover > figure {
-  transform: translateY(-10px);
-}
-@media screen and (max-width: 1024px) {
-  .grid-panel > a:hover > figure {
-    transform: none;
-  }
-}
-
-[class*=grid-] {
-  margin-top: 10px;
-}
-
-.grid-d-4 {
-  overflow: hidden;
-  height: 320px;
-}
-
-.view {
-  float: right;
-  margin: 0px 30px;
-  border: 2px solid;
-  border-color: rgba(255, 255, 255, 0.4);
-  padding: 10px 30px;
-  color: #fff;
-  transition: all 1s ease;
-  margin-left: auto;
-}
-.view:hover {
-  border-color: rgb(255, 255, 255);
-}
-
-#wrapper {
-  margin: 0 auto;
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-  position: relative;
-}
-
 header {
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
   overflow: hidden;
   padding: 35px 0 18px 0;
-  margin-bottom: 20px;
   color: #777;
 }
 @media screen and (max-width: 460px) {
@@ -249,7 +94,6 @@ nav li {
   border-right: 1px solid #929292;
   padding-right: 22px;
   margin-right: 18px;
-  color: #777;
   transition: all 1s ease;
 }
 nav li:last-child {
@@ -285,12 +129,85 @@ nav .active {
   font-weight: 500;
 }
 
-#content,
-header {
-  width: 80%;
-  max-width: 1800px;
-  margin: 0 auto;
+@media screen and (max-width: 460px) {
+  .top-header {
+    width: 100%;
+    padding-top: 40px;
+    display: flex;
+    align-items: center;
+    background-color: #ccc;
+    position: relative;
+    z-index: 2;
+  }
+  .open-nav .mobile-nav-link,
+  .open-nav .mobile-nav-link::after {
+    border-color: #ccc;
+  }
+}
+.grid-panel {
+  position: relative;
+}
+.grid-panel figure {
+  position: relative;
+  height: 320px;
+  transform: translateY(90px);
+  transition: transform 0.3s;
+}
+@media screen and (max-width: 1024px) {
+  .grid-panel figure {
+    bottom: 10px;
+    transform: none;
+  }
+}
+.grid-panel figure img {
+  height: auto;
+  display: block;
+  position: relative;
+  transition: transform 0.4s;
+  transform: translate(-50%, 0);
+  left: 50%;
+  bottom: 90px;
+}
+@media screen and (max-width: 1024px) {
+  .grid-panel figure img {
+    width: 600px;
+  }
+}
+.grid-panel figcaption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 20px;
+  background: #1e1c1c;
+  color: #ed4e6e;
+  display: flex;
+  align-items: center;
+  height: 100px;
+  width: 101%;
+}
+.grid-panel figcaption h2 {
+  color: #fff;
+  max-width: 44%;
+}
+.grid-panel figcaption a {
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 2px;
+  display: inline-block;
+  background: #ed4e6e;
+  color: #fff;
+}
+.grid-panel > a {
+  display: block;
   overflow: hidden;
+}
+.grid-panel > a:hover > figure {
+  transform: translateY(-10px);
+}
+@media screen and (max-width: 1024px) {
+  .grid-panel > a:hover > figure {
+    transform: none;
+  }
 }
 
 #sub-content {
@@ -362,29 +279,14 @@ header {
   margin-bottom: 20px;
 }
 
-.grid-item {
-  width: 30%;
-  height: 320px;
-  position: relative;
-  float: left;
-  overflow: hidden;
-  margin: 0 3% 3% 0;
-  -webkit-box-shadow: 1px 1px 1px 1px rgba(197, 197, 197, 0.5);
-  -moz-box-shadow: 1px 1px 1px 1px rgba(197, 197, 197, 0.5);
-  box-shadow: 1px 1px 1px 1px rgba(197, 197, 197, 0.5);
-}
-
 footer {
-  width: 100%;
   padding: 20px 0;
   font-family: Nexa, "Berthold Akzidenz Grotesk BE", Helvetica, verdana, "sans-serif";
-  float: left;
   font-size: 1.2em;
 }
 footer ul {
   list-style-type: none;
   max-width: 80%;
-  margin: 0 auto;
 }
 footer li {
   float: left;
@@ -459,20 +361,111 @@ footer a:hover {
   text-decoration: underline;
 }
 
-@media screen and (max-width: 460px) {
-  .top-header {
-    width: 100%;
-    padding-top: 40px;
-    display: flex;
-    align-items: center;
-    background-color: #ccc;
-    position: relative;
-    z-index: 2;
-  }
-  .open-nav .mobile-nav-link,
-  .open-nav .mobile-nav-link::after {
-    border-color: #ccc;
-  }
+html, body, div, figure, figcaption, section, article, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  background: transparent;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  text-decoration: none;
+}
+
+a:link,
+button {
+  text-decoration: none;
+  color: #777;
+  -webkit-transition: all 0.5s;
+}
+
+a:visited {
+  text-decoration: none;
+  color: #777;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #2c2a2a;
+}
+
+a:active {
+  text-decoration: none;
+}
+
+div {
+  height: auto;
+  font-family: Nexa, "Berthold Akzidenz Grotesk BE", Helvetica, verdana, "sans-serif";
+}
+
+* {
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
+}
+
+@font-face {
+  font-family: Nexa;
+  src: url(../fonts/NexaBold.woff);
+}
+body {
+  background: none repeat scroll 0 0 #ccc;
+}
+
+[class*=grid-] {
+  margin-top: 10px;
+}
+
+.grid-d-4 {
+  overflow: hidden;
+  height: 320px;
+}
+
+.view {
+  float: right;
+  margin: 0 30px 0 auto;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  padding: 10px 30px;
+  color: #fff;
+  transition: all 1s ease;
+}
+.view:hover {
+  border-color: rgb(255, 255, 255);
+}
+
+#wrapper {
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+#content,
+header,
+footer {
+  width: 80%;
+  max-width: 1800px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.grid-item {
+  width: 30%;
+  height: 320px;
+  position: relative;
+  float: left;
+  overflow: hidden;
+  margin: 0 3% 3% 0;
+  -webkit-box-shadow: 1px 1px 1px 1px rgba(197, 197, 197, 0.5);
+  -moz-box-shadow: 1px 1px 1px 1px rgba(197, 197, 197, 0.5);
+  box-shadow: 1px 1px 1px 1px rgba(197, 197, 197, 0.5);
 }
 
 /*# sourceMappingURL=style.css.map */
