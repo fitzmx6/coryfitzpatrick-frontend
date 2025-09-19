@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { getContentByCategory } from '../js/api';
 
-interface ContentItem {
+export interface CategoryItem {
     id: number;
     name: string;
     url: string;
@@ -14,7 +14,7 @@ interface CategoryListProps {
 }
 
 const CategoryList: React.FC<CategoryListProps> = ({ navToggle }) => {
-    const [items, setItems] = useState<ContentItem[]>([]);
+    const [items, setItems] = useState<CategoryItem[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const location = useLocation();
@@ -24,19 +24,21 @@ const CategoryList: React.FC<CategoryListProps> = ({ navToggle }) => {
     useEffect(() => {
         if (!category) return;
 
-        (async () => {
+        const fetchData = async () => {
             setLoading(true);
             setError(null);
 
             try {
                 const data = await getContentByCategory(category);
-                setItems(data);
+                setItems(data as CategoryItem[]);
             } catch (err: any) {
-                setError(err.message);
+                setError(err.message || 'An error occurred');
             } finally {
                 setLoading(false);
             }
-        })();
+        };
+
+        void fetchData();
     }, [category]);
 
     if (loading) {

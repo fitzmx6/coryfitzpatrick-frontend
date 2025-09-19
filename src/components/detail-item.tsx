@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { getContentByUrl } from "../js/api";
-import NotFound from "./not-found";
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { getContentByUrl } from '../js/api';
+import NotFound from './not-found';
 
-interface ContentItem {
+export interface ContentItem {
     id: number;
     name: string;
     description?: string;
@@ -11,7 +11,7 @@ interface ContentItem {
     images?: string[];
 }
 
-export default function DetailItem() {
+const DetailItem: React.FC = () => {
     const location = useLocation();
     const url = location.pathname;
 
@@ -28,20 +28,16 @@ export default function DetailItem() {
 
             try {
                 const data = await getContentByUrl(url);
-
-                if (!data) {
-                    setNotFound(true);
-                } else {
-                    setDetailItem(data);
-                }
+                if (!data) setNotFound(true);
+                else setDetailItem(data);
             } catch (err: any) {
-                setError(err?.message || "An error occurred");
+                setError(err?.message || 'An error occurred');
             } finally {
                 setLoading(false);
             }
         };
 
-        void fetchData(); // <-- Fix: explicitly ignore the returned Promise
+        void fetchData();
     }, [url]);
 
     if (loading) {
@@ -64,9 +60,7 @@ export default function DetailItem() {
         );
     }
 
-    if (notFound || !detailItem) {
-        return <NotFound />;
-    }
+    if (notFound || !detailItem) return <NotFound />;
 
     const { name, description, videoUrl, images } = detailItem;
 
@@ -95,4 +89,6 @@ export default function DetailItem() {
             </div>
         </div>
     );
-}
+};
+
+export default DetailItem;
