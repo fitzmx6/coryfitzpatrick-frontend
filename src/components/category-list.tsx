@@ -31,8 +31,8 @@ const CategoryList: React.FC<CategoryListProps> = ({ navToggle }) => {
             try {
                 const data = await getContentByCategory(category);
                 setItems(data as CategoryItem[]);
-            } catch (err: any) {
-                setError(err.message || 'An error occurred');
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'An error occurred');
             } finally {
                 setLoading(false);
             }
@@ -80,7 +80,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ navToggle }) => {
                             <img
                                 src={item.thumbnailImage}
                                 alt={item.name}
-                                onError={(e) => { e.currentTarget.src = '/images/placeholder.jpg'; }}
+                                onError={(e) => { e.currentTarget.src = '/images/killroy.svg'; }}
                             />
                             <figcaption>
                                 <h2>{item.name}</h2>

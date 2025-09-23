@@ -28,10 +28,13 @@ const DetailItem: React.FC = () => {
 
             try {
                 const data = await getContentByUrl(url);
-                if (!data) setNotFound(true);
-                else setDetailItem(data);
-            } catch (err: any) {
-                setError(err?.message || 'An error occurred');
+                if (!data) {
+                    setNotFound(true);
+                } else {
+                    setDetailItem(data);
+                }
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'An error occurred');
             } finally {
                 setLoading(false);
             }
